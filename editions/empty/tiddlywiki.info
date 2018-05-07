@@ -1,6 +1,7 @@
 {
 	"description": "Empty edition",
 	"plugins": [
+        "sbaxenda/backlog-tools"
 	],
 	"themes": [
 		"tiddlywiki/vanilla",
