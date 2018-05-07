@@ -1281,8 +1281,7 @@ $tw.Wiki.prototype.deserializeTiddlers = function(type,text,srcFields,options) {
 /*
 Register the built in tiddler deserializer modules
 */
-$tw.modules.define("$:/boot/tiddlerdeserializer/js","tiddlerdeserializer",{
-	"application/javascript": function(text,fields) {
+var deserializeHeaderComment = function(text,fields) {
 		var headerCommentRegExp = new RegExp($tw.config.jsModuleHeaderRegExpString,"mg"),
 			match = headerCommentRegExp.exec(text);
 		fields.text = text;
@@ -1290,7 +1289,12 @@ $tw.modules.define("$:/boot/tiddlerdeserializer/js","tiddlerdeserializer",{
 			fields = $tw.utils.parseFields(match[1].split(/\r?\n\r?\n/mg)[0],fields);
 		}
 		return [fields];
-	}
+	};
+$tw.modules.define("$:/boot/tiddlerdeserializer/js","tiddlerdeserializer",{
+	"application/javascript": deserializeHeaderComment
+});
+$tw.modules.define("$:/boot/tiddlerdeserializer/css","tiddlerdeserializer",{
+	"text/css": deserializeHeaderComment
 });
 $tw.modules.define("$:/boot/tiddlerdeserializer/tid","tiddlerdeserializer",{
 	"application/x-tiddler": function(text,fields) {
@@ -1942,7 +1946,7 @@ $tw.boot.startup = function(options) {
 		// For writable tiddler files, a hashmap of title to {filepath:,type:,hasMetaFile:}
 		$tw.boot.files = Object.create(null);
 		// System paths and filenames
-		$tw.boot.bootPath = path.dirname(module.filename);
+		$tw.boot.bootPath = options.bootPath || path.dirname(module.filename);
 		$tw.boot.corePath = path.resolve($tw.boot.bootPath,"../core");
 		// If there's no arguments then default to `--help`
 		if($tw.boot.argv.length === 0) {
