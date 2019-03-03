@@ -1,5 +1,5 @@
 {
-	"description": "Empty edition",
+	"description": "Empty edition with tiddly-websocket-recorder and backlog-tools plugins",
 	"plugins": [
       "tiddlywiki/highlight",
       "sbaxenda/backlog-tools",
@@ -11,7 +11,7 @@
 	],
 	"build": {
 		"index": [
-			"--rendertiddler","$:/core/save/all","index.html","text/plain"],
+			"--rendertiddler","$:/core/save/all","WebSocketRecorder.html","text/plain"],
 		"empty": [
 			"--rendertiddler","$:/core/save/all","empty.html","text/plain",
 			"--rendertiddler","$:/core/save/all","empty.hta","text/plain"],

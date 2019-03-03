@@ -1,0 +1,8 @@
+created: 20190122082339325
+modified: 20190303073707977
+revision: 1
+title: $:/DefaultTiddlers
+type: text/vnd.tiddlywiki
+
+$:/WebSocketEndPoint
+[[Generate messages (over $:/WebSocketEndPoint)]]
